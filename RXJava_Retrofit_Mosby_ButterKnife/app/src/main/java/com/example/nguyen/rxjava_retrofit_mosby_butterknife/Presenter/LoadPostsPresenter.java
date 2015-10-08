@@ -34,19 +34,23 @@ public class LoadPostsPresenter extends MvpBasePresenter<LoadPostsView> {
                     .subscribe(new Observer<List<Post>>() {
                         @Override
                         public void onCompleted() {
-                            if(isViewAttached()){
+                            if (isViewAttached()) {
                                 getView().loadSuccessful();
                             }
                         }
 
                         @Override
                         public void onError(Throwable e) {
-
+                            if (isViewAttached()) {
+                                getView().showError();
+                            }
                         }
 
                         @Override
                         public void onNext(List<Post> posts) {
-                            //call Display method in Fragment
+                            if (isViewAttached()) {
+                                getView().addContentToRecyclerView(posts);
+                            }
                         }
                     });
         }

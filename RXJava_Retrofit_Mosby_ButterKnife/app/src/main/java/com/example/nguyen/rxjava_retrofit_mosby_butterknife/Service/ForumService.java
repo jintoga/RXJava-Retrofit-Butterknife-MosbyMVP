@@ -54,5 +54,6 @@ public class ForumService {
         @POST("/posts")
         public Observable<Post> postPost(Post post);
 
+
     }
 }
